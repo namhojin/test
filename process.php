@@ -1,6 +1,7 @@
 <?php
-$conn = mysqli_connect("localhost","root","111111");
-mysqli_select_db($conn,'webtest');
+require("config/config.php");
+require("lib/db.php");
+$conn = db_init($config['host'],$config['duser'],$config['dpw'],$config['dname']);
 $sql = "SELECT * FROM user WHERE name='".$_POST['author']."'";
 $result = mysqli_query($conn, $sql);
 

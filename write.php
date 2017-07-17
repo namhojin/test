@@ -37,20 +37,25 @@ $result = mysqli_query($conn,'SELECT * FROM topic');
         </nav>
         <div class="col-md-9">
           <article>
-            <?php
-            if (empty($_GET['id'])) {
+            <form action='process.php' method='post'>
 
-            }
-            else {
-              $sql = "SELECT topic.id,title,name,description FROM topic LEFT JOIN user ON topic.author = user.id WHERE topic.id=".$_GET['id'];
-              $result = mysqli_query($conn, $sql);
-              $row = mysqli_fetch_assoc($result);
+              <div class="form-group">
+                <label for="form-tytle">Title</label>
+                <input type="text" class="form-control" name="title" id="form-tytle" placeholder="Input Title">
+              </div>
+              <div class="form-group">
+                <label for="form-author">Author</label>
+                <input type="text" class="form-control" name="author" id="form-author" placeholder="Input Author">
+              </div>
+              <div class="form-description">
+                <label for="form-tytle">Description</label>
+                <textarea type="text" class="form-control" rows="10" name="description" id="form-description" placeholder="Input Description"></textarea>
+              </div>
 
-              echo '<h2>'.htmlspecialchars($row['title']).'</h2>';
-              echo '<p>'.htmlspecialchars($row['name']).'</p>';
-              echo strip_tags($row['description'],'<a><h1><h2><h3><h4><h5><ul><ol><li>');
-            }
-             ?>
+              <input type='submit' name='' value='submit' class="btn btn-default btn-lg">
+
+
+            </form>
 
           </article>
           <hr>
